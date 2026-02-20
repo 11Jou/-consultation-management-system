@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "authentication",
+    "consultation_management",
+    "patient_management",
 ]
 
 MIDDLEWARE = [

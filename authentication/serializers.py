@@ -7,6 +7,9 @@ from rest_framework.exceptions import AuthenticationFailed
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
+    """
+    Serializer for the custom login view.
+    """
 
     @classmethod
     def get_token(cls, user):
