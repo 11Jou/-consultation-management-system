@@ -1,5 +1,5 @@
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from .serializers import CustomTokenObtainPairSerializer
+from .serializers import CustomTokenObtainPairSerializer, CustimRefreshTokenSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
@@ -18,6 +18,10 @@ class LoginView(TokenObtainPairView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
+
+
+class RefreshTokenView(TokenRefreshView):
+    serializer_class = CustimRefreshTokenSerializer
 
 
 
