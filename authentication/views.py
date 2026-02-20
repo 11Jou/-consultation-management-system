@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 
 
-class LoginView(TokenObtainPairView):
+class CustomLoginView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
 
@@ -20,7 +20,7 @@ class LoginView(TokenObtainPairView):
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 
-class RefreshTokenView(TokenRefreshView):
+class CustomRefreshTokenView(TokenRefreshView):
     serializer_class = CustimRefreshTokenSerializer
 
 
