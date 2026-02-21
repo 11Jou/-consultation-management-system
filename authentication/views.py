@@ -1,6 +1,6 @@
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .serializers import CustomTokenObtainPairSerializer, CustimRefreshTokenSerializer
-from rest_framework.response import Response
+from utils.CustomResponse import *
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 
@@ -11,13 +11,12 @@ class CustomLoginView(TokenObtainPairView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-
         try:
             serializer.is_valid(raise_exception=True)
         except AuthenticationFailed as e:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return CustomResponse.error(message="Invalid credentials", errors = "Login Failed")
 
-        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        return CustomResponse.success(message="Login successful", data=serializer.validated_data)
 
 
 class CustomRefreshTokenView(TokenRefreshView):
