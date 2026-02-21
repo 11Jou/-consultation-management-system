@@ -57,7 +57,7 @@ class GenerateAISummaryAPIView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             consultation = Consultation.objects.get(id=kwargs['consultation_id'])
-            consultation.generate_ai_summary()
+            consultation.generate_summary()
             return CustomResponse.success(
                 data=consultation.ai_summary,
                 message="AI summary generated successfully"
