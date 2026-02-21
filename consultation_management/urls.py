@@ -1,4 +1,7 @@
 from django.urls import path
+from .views import ConsultationListCreateAPIView, GenerateAISummaryAPIView
 
 urlpatterns = [
+    path('', ConsultationListCreateAPIView.as_view(), name='consultation-list-create'),
+    path('<int:consultation_id>/generate-summary/', GenerateAISummaryAPIView.as_view(), name='generate-ai-summary'),
 ]
