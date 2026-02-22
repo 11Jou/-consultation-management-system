@@ -6,6 +6,7 @@ from utils.permission import *
 from rest_framework.exceptions import ValidationError
 from utils.pagination import GlobalPagination
 from rest_framework import status
+from rest_framework.filters import SearchFilter
 
 
 class ListAllPatientsAPIView(ListAPIView):
@@ -34,6 +35,8 @@ class PatientListCreateAPIView(ListCreateAPIView):
     serializer_class = PatientSerializer
     permission_classes = [IsAuthenticated, IsDoctorOrAdmin]
     pagination_class = GlobalPagination
+    filter_backends = [SearchFilter]
+    search_fields = ['full_name', 'email']
 
     def list(self, request, *args, **kwargs):
         try:

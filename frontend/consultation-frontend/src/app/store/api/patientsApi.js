@@ -3,7 +3,8 @@ import { api } from '../api'
 const patientsApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getPatients: builder.query({
-            query: ({ page = 1, page_size = 10  }) => `/patient/?page=${page}&page_size=${page_size}`,
+            query: ({ page = 1, page_size = 10, search = '' }) =>
+                `/patient/?page=${page}&page_size=${page_size}&search=${search}`,
             providesTags: ['Patient'],
             transformResponse: (response) => response.data,
         }),

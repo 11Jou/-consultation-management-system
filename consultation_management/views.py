@@ -9,6 +9,8 @@ from rest_framework.exceptions import ValidationError
 from .models import Consultation
 from rest_framework import status
 from .task import generate_summary_task
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 
 
 class ConsultationListCreateAPIView(ListCreateAPIView):
@@ -16,6 +18,8 @@ class ConsultationListCreateAPIView(ListCreateAPIView):
     serializer_class = ConsultationSerializer
     permission_classes = [IsAuthenticated, IsDoctorOrAdmin]
     pagination_class = GlobalPagination
+    filter_backends = [SearchFilter]
+    search_fields = ['patient__full_name', 'patient__email']
 
     def list(self, request, *args, **kwargs):
         try:

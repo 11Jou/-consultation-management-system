@@ -3,7 +3,8 @@ import { api } from '../api'
 const consultApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getConsultations: builder.query({
-            query: ({ page = 1, page_size = 10 }) => `/consultations/?page=${page}&page_size=${page_size}`,
+            query: ({ page = 1, page_size = 10, search = '' }) =>
+                `/consultations/?page=${page}&page_size=${page_size}&search=${search}`,
             providesTags: ['Consultation'],
             transformResponse: (response) => response.data,
         }),

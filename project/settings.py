@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "authentication",
     "consultation_management",
     "patient_management",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
