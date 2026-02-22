@@ -25,7 +25,7 @@ class OpenAISummaryService(GenerateAISummaryService):
     def generate_ai_summary(self, symptoms: str, diagnosis: str) -> str:   
         if self.mock:
             time.sleep(5)
-            return f"This is a test summary of the consultation symptoms and diagnosis: {symptoms}, {diagnosis}"
+            return f"This is a new test summary of the consultation symptoms and diagnosis: {symptoms}, {diagnosis}"
 
         try:
 

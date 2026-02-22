@@ -75,10 +75,10 @@ class GenerateAISummaryAPIView(APIView):
     permission_classes = [IsAuthenticated, IsDoctorOrAdmin]
     def post(self, request, *args, **kwargs):
         try:
-            consultation = Consultation.objects.get(id=kwargs['consultation_id'])
-            generate_summary_task.delay(consultation.id)
+            consultation_id = kwargs['consultation_id']
+            generate_summary_task.delay(consultation_id)
             return CustomResponse.success(
-                message="AI summary generation started"
+                message="AI summary generation will be completed in a few seconds"
             )
         except Exception as e:
             return CustomResponse.error(

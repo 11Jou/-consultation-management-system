@@ -4,16 +4,26 @@ import { useAppDispatch } from '../store/hooks'
 import { setCredentials } from '../store/slices/authSlice'
 import Error from '../components/Error'
 import { useState } from 'react'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 export default function Login() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const [login, { isLoading, error }] = useLoginMutation()
+  const { isAuthenticated } = useSelector((state) => state.auth)
 
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   })
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard/patients")
+    }
+  }, [isAuthenticated, navigate])
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })

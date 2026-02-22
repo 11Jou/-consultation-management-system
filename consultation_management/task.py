@@ -12,4 +12,4 @@ def generate_summary_task(self, consultation_id):
         consultation.save()
         return ai_summary
     except Exception as e:
-        raise self.retry(exc=exc, countdown=5)
+        raise self.retry(exc=e, countdown=5)

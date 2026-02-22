@@ -5,8 +5,10 @@ import Error from '../../../../components/Error'
 import DetailRow from '../../../../components/DetailRow'
 import { toast, ToastContainer } from 'react-toastify'
 import ConfirmDialog from '../../../../components/ConfirmDialog'
+import { useNavigate } from 'react-router-dom'
 
 export default function ConsultationDetail() {
+  const navigate = useNavigate()
   const { id } = useParams()
   const { data, isLoading, error } = useGetConsultationDetailQuery(id)
   const [generateSummary, { isLoading: isGenerating }] = useGenerateAISummaryMutation()
