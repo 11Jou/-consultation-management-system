@@ -32,8 +32,21 @@ Full-stack Consultation Management System built with:
 
 ---
 
-# 🔐 Environment Variables
+# Setup Instructions
 
+## 1 -  Clone the repository
+
+```bash
+git clone https://github.com/11Jou/-consultation-management-system.git
+```
+
+## 2 -  Build and Start Containers
+
+```bash
+docker compose up --build -d
+```
+
+## 3 - Set Environment Variables
 Create a `.env` file in the project root. You can copy from `.env.example`:
 
 ```bash
@@ -51,23 +64,7 @@ GOOGLE_API_KEY=your-google-api-key
 For actual AI summaries, set `MOCK=False` and provide your OpenAI API key in the `OPENAI_API_KEY` environment variable.
 ```
 
----
-
-# Setup Instructions
-
-## 1 Clone the repository
-
-```bash
-git clone https://github.com/11Jou/-consultation-management-system.git
-```
-
-## 2 Build and Start Containers
-
-```bash
-docker compose up --build -d
-```
-
-## 3 Access The Application
+## 4 - Access The Application
 
 * Frontend: [http://localhost:5174](http://localhost:5174)
 * Django Admin: [http://localhost:8000/admin](http://localhost:8000/admin)
