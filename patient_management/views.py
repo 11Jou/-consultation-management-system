@@ -51,7 +51,6 @@ class PatientListCreateAPIView(ListCreateAPIView):
                 errors=str(e),
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
     def create(self, request, *args, **kwargs):
         try:
             response = super().create(request, *args, **kwargs)

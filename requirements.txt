@@ -27,3 +27,4 @@ tzdata==2025.3
 celery
 redis
 django-filter
+drf-yasg

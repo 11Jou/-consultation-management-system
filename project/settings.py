@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "consultation_management",
     "patient_management",
     "django_filters",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
