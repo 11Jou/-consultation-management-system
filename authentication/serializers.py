@@ -28,7 +28,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             raise AuthenticationFailed(e)
 
 
-class CustimRefreshTokenSerializer(TokenRefreshSerializer):
+
+class CustomRefreshTokenSerializer(TokenRefreshSerializer):
 
     def validate(self, attrs):
         try:

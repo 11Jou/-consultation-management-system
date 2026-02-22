@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from rest_framework.views import APIView
 from .serializers import ConsultationSerializer
 from utils.CustomResponse import CustomResponse
@@ -43,6 +43,24 @@ class ConsultationListCreateAPIView(ListCreateAPIView):
             return CustomResponse.error(
                 message="Consultation creation failed",
                 errors=f"{first_field}: {first_error}"
+            )
+        except Exception as e:
+            return CustomResponse.error(
+                message="An unexpected error occurred",
+                errors=str(e),
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+class ConsultationDetailAPIView(RetrieveAPIView):
+    queryset = Consultation.objects.select_related('patient').all()
+    serializer_class = ConsultationSerializer
+    permission_classes = [IsAuthenticated, IsDoctorOrAdmin]
+    def get(self, request, *args, **kwargs):
+        try:
+            response = super().get(request, *args, **kwargs)
+            return CustomResponse.success(
+                data=response.data,
+                message="Consultation fetched successfully"
             )
         except Exception as e:
             return CustomResponse.error(

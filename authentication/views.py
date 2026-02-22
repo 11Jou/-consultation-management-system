@@ -1,5 +1,5 @@
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from .serializers import CustomTokenObtainPairSerializer, CustimRefreshTokenSerializer
+from .serializers import CustomTokenObtainPairSerializer, CustomRefreshTokenSerializer
 from utils.CustomResponse import *
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
@@ -20,7 +20,7 @@ class CustomLoginView(TokenObtainPairView):
 
 
 class CustomRefreshTokenView(TokenRefreshView):
-    serializer_class = CustimRefreshTokenSerializer
+    serializer_class = CustomRefreshTokenSerializer
 
 
 

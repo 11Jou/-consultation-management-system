@@ -1,4 +1,4 @@
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, ListAPIView
 from .models import Patient
 from .serializers import PatientSerializer
 from utils.CustomResponse import CustomResponse
@@ -6,6 +6,27 @@ from utils.permission import *
 from rest_framework.exceptions import ValidationError
 from utils.pagination import GlobalPagination
 from rest_framework import status
+
+
+class ListAllPatientsAPIView(ListAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
+    permission_classes = [IsAuthenticated, IsDoctorOrAdmin]
+
+
+    def list(self, request, *args, **kwargs):
+        try:
+            response = super().list(request, *args, **kwargs)
+            return CustomResponse.success(
+                data=response.data,
+                message="Patients fetched successfully"
+            )
+        except Exception as e:
+            return CustomResponse.error(
+                message="An unexpected error occurred",
+                errors=str(e),
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 
 class PatientListCreateAPIView(ListCreateAPIView):

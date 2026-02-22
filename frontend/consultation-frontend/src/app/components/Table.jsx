@@ -1,4 +1,4 @@
-export default function Table({ columns, data }) {
+export default function Table({ columns, data, clickable = false ,onRowClick }) {
   return (
     <div className="overflow-hidden rounded-lg border border-slate-700">
       <table className="w-full">
@@ -18,7 +18,8 @@ export default function Table({ columns, data }) {
           {data?.map((row, rowIndex) => (
             <tr
               key={row.id ?? rowIndex}
-              className="border-t border-slate-700 bg-white hover:bg-gray-300 transition-colors"
+              className={`border-t border-slate-700 bg-white hover:bg-gray-300 transition-colors ${clickable ? 'cursor-pointer' : ''}`}
+              onClick={() => clickable && onRowClick(row)}
             >
               {columns.map((column) => (
                 <td

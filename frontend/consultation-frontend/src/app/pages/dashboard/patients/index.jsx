@@ -3,6 +3,8 @@ import { useGetPatientsQuery } from '../../../store/api/patientsApi'
 import Table from '../../../components/Table'
 import Pagination from '../../../components/Pagination'
 import { useNavigate } from 'react-router-dom'
+import Error from '../../../components/Error'
+
 
 const columns = [
   { id: 'full_name', label: 'Full Name' },
@@ -18,7 +20,7 @@ export default function Patients() {
   const totalPages = Math.ceil((data?.count ?? 0) / 10) || 1
 
   if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
+  if (error) return <Error error="Failed to fetch patients" />
 
   return (
     <div className="space-y-4">

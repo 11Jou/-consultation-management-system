@@ -8,6 +8,8 @@ const Login = lazy(() => import("../pages/index.jsx"));
 const Patients = lazy(() => import("../pages/dashboard/patients"));
 const Consultations = lazy(() => import("../pages/dashboard/consultations"));
 const CreatePatient = lazy(() => import("../pages/dashboard/patients/create"));
+const CreateConsultation = lazy(() => import("../pages/dashboard/consultations/create"));
+const ConsultationDetail = lazy(() => import("../pages/dashboard/consultations/[id]"));
 
 const Loading = () => (
     <div className="flex items-center justify-center min-h-screen">
@@ -38,6 +40,14 @@ const Loading = () => (
             {
               path: "/dashboard/patients/create",
               element: <CreatePatient />,
+            },
+            {
+              path: "/dashboard/consultations/create",
+              element: <CreateConsultation />,
+            },
+            {
+              path: "/dashboard/consultations/:id",
+              element: <ConsultationDetail />,
             },
           ],
         },

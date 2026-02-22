@@ -7,6 +7,11 @@ const patientsApi = api.injectEndpoints({
             providesTags: ['Patient'],
             transformResponse: (response) => response.data,
         }),
+        getAllPatients: builder.query({
+            query: () => '/patient/all/',
+            providesTags: ['Patient'],
+            transformResponse: (response) => response.data,
+        }),
         createPatient: builder.mutation({
             query: (data) => ({
                 url: '/patient/',
@@ -18,4 +23,4 @@ const patientsApi = api.injectEndpoints({
     }),
 })
 
-export const { useGetPatientsQuery, useCreatePatientMutation } = patientsApi
+export const { useGetPatientsQuery, useCreatePatientMutation, useGetAllPatientsQuery } = patientsApi
