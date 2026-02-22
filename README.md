@@ -53,17 +53,21 @@ For actual AI summaries, set `MOCK=False` and provide your OpenAI API key in the
 
 ---
 
-# 🐳 Running With Docker
+# Setup Instructions
 
-## 1️⃣ Build and Start Containers
+## 1 Clone the repository
+
+```bash
+git clone https://github.com/11Jou/-consultation-management-system.git
+```
+
+## 2 Build and Start Containers
 
 ```bash
 docker compose up --build -d
 ```
 
----
-
-# 🌐 Access The Application
+## 3 Access The Application
 
 * Frontend: [http://localhost:5174](http://localhost:5174)
 * Django Admin: [http://localhost:8000/admin](http://localhost:8000/admin)
