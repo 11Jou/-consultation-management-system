@@ -31,7 +31,7 @@ export default function CreateConsultation() {
                 navigate("/dashboard/consultations")
             }, 2000)
         } catch (err) {
-            toast.error(err.data.error)
+            toast.error(err?.data?.error || "An unknown error occurred")
         }
     }
     if (isLoadingPatients) return <div>Loading...</div>

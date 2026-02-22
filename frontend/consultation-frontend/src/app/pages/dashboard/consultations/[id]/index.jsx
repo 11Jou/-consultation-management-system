@@ -23,7 +23,7 @@ export default function ConsultationDetail() {
         navigate("/dashboard/consultations")
       }, 3000)
     } catch (err) {
-      toast.error(err.data.error)
+      toast.error(err?.data?.error || "An unknown error occurred")
       setIsConfirmDialogOpen(false)
     }
   }

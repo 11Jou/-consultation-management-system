@@ -28,7 +28,7 @@ export default function CreatePatient() {
                 navigate("/dashboard/patients")
             }, 2000)
         } catch (err) {
-            toast.error(err.data.error)
+            toast.error(err?.data?.error || "An unknown error occurred")
         }
     }
     return (

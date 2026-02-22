@@ -48,7 +48,7 @@ export default function Login() {
           <p className="text-gray-600">Login to your account</p>
         </div>
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-          {error && <Error error={error.data.message} />}
+          {error && <Error error={error?.data?.message || "An unknown error occurred"} />}
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-4">
               <label

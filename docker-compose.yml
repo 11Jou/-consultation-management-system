@@ -41,5 +41,15 @@ services:
     networks:
       - app-network
 
+  frontend:
+    build:
+      context: ./frontend/consultation-frontend
+    container_name: consultation-management-frontend
+    ports:
+      - "127.0.0.1:5174:80"
+    networks:
+      - app-network
+    restart: always
+
 networks:
   app-network:
