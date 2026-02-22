@@ -32,7 +32,7 @@ Full-stack Consultation Management System built with:
 
 ---
 
-# Setup Instructions
+# 📋 Setup Instructions
 
 ## 1 -  Clone the repository
 
@@ -40,13 +40,7 @@ Full-stack Consultation Management System built with:
 git clone https://github.com/11Jou/-consultation-management-system.git
 ```
 
-## 2 -  Build and Start Containers
-
-```bash
-docker compose up --build -d
-```
-
-## 3 - Set Environment Variables
+## 2 - Set Environment Variables
 Create a `.env` file in the project root. You can copy from `.env.example`:
 
 ```bash
@@ -62,6 +56,12 @@ GOOGLE_API_KEY=your-google-api-key
 
 `MOCK` (boolean) – When set to `True`, the AI summary generation will return mock responses instead of calling the OpenAI API.  
 For actual AI summaries, set `MOCK=False` and provide your OpenAI API key in the `OPENAI_API_KEY` environment variable.
+```
+
+## 3 -  Build and Start Containers
+
+```bash
+docker compose up --build -d
 ```
 
 ## 4 - Access The Application
