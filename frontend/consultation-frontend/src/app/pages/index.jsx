@@ -23,10 +23,10 @@ export default function Login() {
     e.preventDefault()
     try {
       const res = await login(formData).unwrap()
-      dispatch(setCredentials(res))
-      console.log(res)
+      dispatch(setCredentials({ ...res.data, email: formData.email }))
+      navigate("/dashboard/patients")
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
@@ -72,7 +72,7 @@ export default function Login() {
               <button
                 type='submit'
                 disabled={isLoading}
-                className="w-full bg-[#0096FF] hover:bg-[#007ACC] text-white py-3 px-4 rounded-lg font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                className="w-full bg-slate-800 hover:bg-slate-700 text-white py-3 px-4 rounded-lg font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
                 {isLoading ? "Logging in..." : "Login"}
               </button>
             </div>

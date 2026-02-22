@@ -5,6 +5,7 @@ from utils.CustomResponse import CustomResponse
 from utils.permission import *
 from rest_framework.exceptions import ValidationError
 from utils.pagination import GlobalPagination
+from rest_framework import status
 
 
 class PatientListCreateAPIView(ListCreateAPIView):
