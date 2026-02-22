@@ -8,6 +8,7 @@ from utils.pagination import GlobalPagination
 from rest_framework.exceptions import ValidationError
 from .models import Consultation
 from rest_framework import status
+from .task import generate_summary_task
 
 
 class ConsultationListCreateAPIView(ListCreateAPIView):
@@ -75,10 +76,9 @@ class GenerateAISummaryAPIView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             consultation = Consultation.objects.get(id=kwargs['consultation_id'])
-            consultation.generate_summary()
+            generate_summary_task.delay(consultation.id)
             return CustomResponse.success(
-                data=consultation.ai_summary,
-                message="AI summary generated successfully"
+                message="AI summary generation started"
             )
         except Exception as e:
             return CustomResponse.error(

@@ -1,21 +1,36 @@
 import { useParams } from 'react-router-dom'
+import { useState } from 'react'
 import { useGetConsultationDetailQuery, useGenerateAISummaryMutation } from '../../../../store/api/consultApi'
 import Error from '../../../../components/Error'
 import DetailRow from '../../../../components/DetailRow'
 import { toast, ToastContainer } from 'react-toastify'
+import ConfirmDialog from '../../../../components/ConfirmDialog'
 
 export default function ConsultationDetail() {
   const { id } = useParams()
   const { data, isLoading, error } = useGetConsultationDetailQuery(id)
   const [generateSummary, { isLoading: isGenerating }] = useGenerateAISummaryMutation()
+  const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
 
   const handleGenerateSummary = async () => {
     try {
-      await generateSummary(id).unwrap()
-      toast.success("AI summary generated successfully")
+      const res = await generateSummary(id).unwrap()
+      toast.success(res.message)
+      setIsConfirmDialogOpen(false)
+      setTimeout(() => {
+        navigate("/dashboard/consultations")
+      }, 3000)
     } catch (err) {
-      toast.error("Failed to generate AI summary")
+      toast.error(err.data.error)
+      setIsConfirmDialogOpen(false)
     }
+  }
+
+  const handleConfirmDialogOpen = () => {
+    setIsConfirmDialogOpen(true)
+  }
+  const handleConfirmDialogClose = () => {
+    setIsConfirmDialogOpen(false)
   }
 
   if (isLoading) return <div>Loading...</div>
@@ -31,11 +46,11 @@ export default function ConsultationDetail() {
           </h1>
           <button
             type="button"
-            onClick={handleGenerateSummary}
+            onClick={handleConfirmDialogOpen}
             disabled={isGenerating}
             className="bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            {isGenerating ? 'Generating...' : 'Generate Summary'}
+            Generate Summary
           </button>
         </div>
 
@@ -47,6 +62,18 @@ export default function ConsultationDetail() {
           <DetailRow label="Created At" value={data.created_at} />
           <DetailRow label="Updated At" value={data.updated_at} />
         </div>
+        <ConfirmDialog
+          isOpen={isConfirmDialogOpen}
+          onConfirm={handleGenerateSummary}
+          onCancel={handleConfirmDialogClose}
+          title="Generate Summary"
+          message="Are you sure you want to generate a summary for this consultation?"
+          confirmText="Generate"
+          cancelText="Cancel"
+          isLoading={isGenerating}
+          confirmButtonClass="bg-slate-800 hover:bg-slate-700"
+          cancelButtonClass="bg-red-600 hover:bg-red-700"
+        />
       </div>
     </div>
   )
