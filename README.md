@@ -46,6 +46,9 @@ Then update the following variables:
 SECRET_KEY=your-secret-key
 OPENAI_API_KEY=your-openai-api-key
 GOOGLE_API_KEY=your-google-api-key
+
+`MOCK` (boolean) – When set to `True`, the AI summary generation will return mock responses instead of calling the OpenAI API.  
+For actual AI summaries, set `MOCK=False` and provide your OpenAI API key in the `OPENAI_API_KEY` environment variable.
 ```
 
 ---
