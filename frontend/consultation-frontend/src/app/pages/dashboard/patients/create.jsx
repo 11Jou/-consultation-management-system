@@ -64,6 +64,7 @@ export default function CreatePatient() {
                         type="date"
                         id="date_of_birth"
                         name="date_of_birth"
+                        max={new Date().toISOString().split('T')[0]}
                         required
                         value={formData.date_of_birth}
                         onChange={handleChange}
