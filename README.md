@@ -40,6 +40,10 @@ Full-stack Consultation Management System built with:
 git clone https://github.com/11Jou/-consultation-management-system.git
 ```
 
+```bash
+cd -consultation-management-system
+```
+
 ## 2 - Set Environment Variables
 Create a `.env` file in the project root. You can copy from `.env.example`:
 
@@ -86,10 +90,23 @@ Password: real@1234
 Email: [admin@gmail.com](mailto:admin@gmail.com)
 Password: 1234
 
-> Both accounts currently have the same permissions (creating patients and consultations). They are separated to demonstrate role-based authorization for production-ready environments.
+> Both accounts currently have the same permissions in the system (creating patients and consultations) but admin have extra permissions to access admin panel. They are separated to demonstrate role-based authorization for production-ready environments.
 
 
 ---
+
+# ✅ Unit Test
+
+### Patient App
+```bash
+docker compose exec app python manage.py test patient_management
+```
+
+
+### Consultation App
+```bash
+docker compose exec app python manage.py test consultation_management
+```
 
 # 📌 Notes
 
